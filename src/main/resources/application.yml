@@ -1,0 +1,7 @@
+# 端口
+server:
+  port: 7031
+
+spring:
+  aop:
+    proxy-target-class: false
