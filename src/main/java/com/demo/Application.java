@@ -10,7 +10,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  * @since 2021/6/21 15:45
  */
 @SpringBootApplication
-@EnableAspectJAutoProxy(proxyTargetClass = false)
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);

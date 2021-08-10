@@ -24,7 +24,7 @@
 
 #### 2.1 注解实现
 
-> 定义切面，通知，切入点
+> 代码实现
 
 ```java
 @Aspect
@@ -36,10 +36,17 @@ public class DemoAspect {
     @Pointcut("@annotation(com.demo.annotation.AopAnnotation)")
     public void pointCut1(){}
 
-
-    @After("pointCut1()")
+   @After("pointCut1()")
     public void annotationAfter(){
-        System.out.println("annotationAfter,最终通知");
+        System.out.println("annotation,最终通知");
+    }
+
+    @Pointcut("@within(com.demo.annotation.AopWithInAnnotation)")
+    public void pointCut2(){}
+    
+    @After("pointCut2()")
+    public void annotationBefore(){
+        System.out.println("withIn,前置通知");
     }
 
     @Before("pointCut()")
@@ -75,10 +82,32 @@ public class DemoAspect {
     }
 
     //引入
-    @DeclareParents(defaultImpl = NewServiceImpl.class,value = "com.demo.service.impl.CglibAopServiceImpl*")
+    @DeclareParents(defaultImpl = NewServiceImpl.class,value = "com.demo.service.impl.CglibAopServiceImpl")
     public NewService newService;
 }
 ```
+
+- @Aspect：定义切面
+
+- @PointCut：定义切入点，将符合切入点规则的通知织入到连接点上
+
+  - execution(* com.demo.service..*.test(..))：` * `表示方法修饰符，包名`..`表示当前包和子包，` * `表示类名，方法名，`(..)`表示参数可以为多个
+  - @within：自定义注解实现，作用与类上，且没有重载方法@within匹配不到，类似的还有@target，可以阅读这篇文章：https://www.jianshu.com/p/fb109e03edec
+  - @annotation：自定义注解实现，作用于方法上
+
+- @Before：前置通知，通过JoinPoint获取基本信息，且其他通知方法同样可以获取
+
+- @After：最终通知
+
+- @AfterReturning：后置通知，获取返回值
+
+- @AfterThrowing：异常通知，获取异常信息
+
+- @Around：环绕通知，参数`ProceedingJoinPoint`
+
+- @DeclareParents：定义引入通知，`defaultImpl`：接口的实现类，`value`：被引入的类，通过给接口提供实现类，允许对象动态的添加实现接口。
+
+  ![image-20210811014733704](image-20210811014733704.png)
 
 #### 2.2 xml
 
@@ -105,6 +134,34 @@ public class DemoAspect {
     </aop:aspect>
 </aop:config>
 ```
+
+
+### 3. 实现原理
+#### 3.1 JDK动态代理
+
+> 代码
+
+```java
+public class JDKDynamicProxy implements InvocationHandler {
+    private Object target;
+    public JDKDynamicProxy(Object target) {
+        this.target = target;
+    }
+    public <T> T getProxy(){
+        return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(),target.getClass().getInterfaces(),this);
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        System.out.println("before");
+        Object invoke = method.invoke(target, args);
+        return invoke;
+    }
+}
+```
+
+
+
 
 问题1：为什么通知的执行顺序是这样的？
 

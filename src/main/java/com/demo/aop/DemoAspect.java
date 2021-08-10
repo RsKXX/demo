@@ -37,11 +37,20 @@ public class DemoAspect {
     @Pointcut("@annotation(com.demo.annotation.AopAnnotation)")
     public void pointCut1(){}
 
-
     @After("pointCut1()")
     public void annotationAfter(){
-        System.out.println("annotationAfter,最终通知");
+        System.out.println("annotation,最终通知");
     }
+
+
+    @Pointcut("@within(com.demo.annotation.AopWithInAnnotation)")
+    public void pointCut2(){}
+
+    @After("pointCut2()")
+    public void annotationBefore(){
+        System.out.println("@withIn：前置通知");
+    }
+
 
     @Before("pointCut()")
     public void before(JoinPoint joinPoint){
@@ -77,6 +86,6 @@ public class DemoAspect {
 
 
     //引入
-    @DeclareParents(defaultImpl = NewServiceImpl.class,value = "com.demo.service.impl.CglibAopServiceImpl*")
+    @DeclareParents(defaultImpl = NewServiceImpl.class , value = "com.demo.service.impl.CglibAopServiceImpl")
     public NewService newService;
 }

@@ -4,7 +4,9 @@ import com.demo.Application;
 import com.demo.service.AopService;
 import com.demo.service.NewService;
 import com.demo.service.impl.CglibAopServiceImpl;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
@@ -21,12 +23,15 @@ class AopTest {
     @Autowired
     AopService aopService;
 
-    @org.junit.jupiter.api.Test
+    @Test
     void test(){
         cglibAopService.test("cglib");
+//        cglibAopService.test1("test1");
+        System.out.println("--------引入--------");
         NewService newService = (NewService) cglibAopService;
         newService.pr();
-//        aopService.test("aop");
+        System.out.println("-------------------");
+        aopService.test("aop");
     }
 
 
