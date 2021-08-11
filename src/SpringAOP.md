@@ -116,10 +116,8 @@ public class DemoAspect {
 
 <!--aop相关注解的识别@Aspect.@Pointcut,@Before,@After,@AfterReturing,@AfterThrowing，@Around-->
 <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-
 <!--配置bean-->
 <bean id="allAdvice" class="com.demo.aop.DemoAspect"></bean>
-
 <aop:config>
     <!--配置bean切面-->
     <aop:aspect ref="allAdvice">
