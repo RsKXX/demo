@@ -161,6 +161,24 @@ public class JDKDynamicProxy implements InvocationHandler {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 问题1：为什么通知的执行顺序是这样的？
 
 因为过滤器链中（ArrayList）中顺序

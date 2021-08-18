@@ -16,8 +16,8 @@ public class DynamicProxyTest {
     void jdk(){
         Subject proxy = new JDKDynamicProxy(new RealSubject()).getProxy();
         proxy.pr();
-        Subject1 proxy1 = (Subject1) proxy;
-        proxy1.pr1();
+//        Subject1 proxy1 = (Subject1) proxy;
+//        proxy1.pr1();
     }
     @Test
     void cglib(){
