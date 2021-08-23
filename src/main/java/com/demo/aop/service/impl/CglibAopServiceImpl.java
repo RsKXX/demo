@@ -1,11 +1,7 @@
-package com.demo.service.impl;
+package com.demo.aop.service.impl;
 
-import com.demo.annotation.AopAnnotation;
+import com.demo.aop.annotation.AopAnnotation;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 
 /**

@@ -1,20 +1,13 @@
 package com.demo.aop;
 
-import cn.hutool.json.JSON;
-import com.demo.service.NewService;
-import com.demo.service.impl.NewServiceImpl;
+import com.demo.aop.service.NewService;
+import com.demo.aop.service.impl.NewServiceImpl;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.Map;
 
 /**
  * @Author RuanShaoKang
@@ -27,14 +20,14 @@ public class DemoAspect {
     /**
     *@author: RuanShaoKang
     *@date: 2021/8/5
-    *@description: execution(* com.demo.service..*.*(..))   解释:第一个* 表示方法限定符  .. 表示当前包和子包 * 表示所有类  * 类中所有方法 (..) 表示参数
+    *@description: execution(* com.demo.aop.service..*.*(..))   解释:第一个* 表示方法限定符  .. 表示当前包和子包 * 表示所有类  * 类中所有方法 (..) 表示参数
     *@param: []
     *@return: void
     */
-    @Pointcut("execution(* com.demo.service..*.test(..))")
+    @Pointcut("execution(* com.demo.aop.service..*.test(..))")
     public void pointCut(){}
 
-    @Pointcut("@annotation(com.demo.annotation.AopAnnotation)")
+    @Pointcut("@annotation(com.demo.aop.annotation.AopAnnotation)")
     public void pointCut1(){}
 
     @After("pointCut1()")
@@ -43,7 +36,7 @@ public class DemoAspect {
     }
 
 
-    @Pointcut("@within(com.demo.annotation.AopWithInAnnotation)")
+    @Pointcut("@within(com.demo.aop.annotation.AopWithInAnnotation)")
     public void pointCut2(){}
 
     @After("pointCut2()")
@@ -86,6 +79,6 @@ public class DemoAspect {
 
 
     //引入
-    @DeclareParents(defaultImpl = NewServiceImpl.class , value = "com.demo.service.impl.CglibAopServiceImpl")
+    @DeclareParents(defaultImpl = NewServiceImpl.class , value = "com.demo.aop.service.impl.CglibAopServiceImpl")
     public NewService newService;
 }

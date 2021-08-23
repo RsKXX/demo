@@ -1,6 +1,4 @@
-package com.demo.annotation;
-
-import org.springframework.stereotype.Component;
+package com.demo.aop.annotation;
 
 import java.lang.annotation.*;
 

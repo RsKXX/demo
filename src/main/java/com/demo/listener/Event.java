@@ -1,6 +1,4 @@
-package com.demo.Listener;
-
-import lombok.Data;
+package com.demo.listener;
 
 import java.util.EventObject;
 

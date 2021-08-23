@@ -1,4 +1,4 @@
-package com.demo.code;
+package com.demo.queue;
 
 /**
  * @Author RuanShaoKang

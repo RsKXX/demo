@@ -1,12 +1,11 @@
 package com.example.demo;
 
 import com.demo.Application;
-import com.demo.service.AopService;
-import com.demo.service.NewService;
-import com.demo.service.impl.CglibAopServiceImpl;
+import com.demo.aop.service.AopService;
+import com.demo.aop.service.NewService;
+import com.demo.aop.service.impl.CglibAopServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 

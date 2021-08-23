@@ -30,10 +30,10 @@
 @Aspect
 @Component
 public class DemoAspect {
-    @Pointcut("execution(* com.demo.service..*.test(..))")
+    @Pointcut("execution(* com.demo.aop.service..*.test(..))")
     public void pointCut(){}
 
-    @Pointcut("@annotation(com.demo.annotation.AopAnnotation)")
+    @Pointcut("@annotation(com.demo.aop.annotation.AopAnnotation)")
     public void pointCut1(){}
 
    @After("pointCut1()")
@@ -41,7 +41,7 @@ public class DemoAspect {
         System.out.println("annotation,最终通知");
     }
 
-    @Pointcut("@within(com.demo.annotation.AopWithInAnnotation)")
+    @Pointcut("@within(com.demo.aop.annotation.AopWithInAnnotation)")
     public void pointCut2(){}
     
     @After("pointCut2()")
@@ -82,7 +82,7 @@ public class DemoAspect {
     }
 
     //引入
-    @DeclareParents(defaultImpl = NewServiceImpl.class,value = "com.demo.service.impl.CglibAopServiceImpl")
+    @DeclareParents(defaultImpl = NewServiceImpl.class,value = "com.demo.aop.service.impl.CglibAopServiceImpl")
     public NewService newService;
 }
 ```
@@ -91,7 +91,7 @@ public class DemoAspect {
 
 - @PointCut：定义切入点，将符合切入点规则的通知织入到连接点上
 
-  - execution(* com.demo.service..*.test(..))：` * `表示方法修饰符，包名`..`表示当前包和子包，` * `表示类名，方法名，`(..)`表示参数可以为多个
+  - execution(* com.demo.aop.service..*.test(..))：` * `表示方法修饰符，包名`..`表示当前包和子包，` * `表示类名，方法名，`(..)`表示参数可以为多个
   - @within：自定义注解实现，作用与类上，且没有重载方法@within匹配不到，类似的还有@target，可以阅读这篇文章：https://www.jianshu.com/p/fb109e03edec
   - @annotation：自定义注解实现，作用于方法上
 
@@ -112,24 +112,25 @@ public class DemoAspect {
 #### 2.2 xml
 
 ```xml
+
 <context:component-scan base-package="com.demo"></context:component-scan>
 
-<!--aop相关注解的识别@Aspect.@Pointcut,@Before,@After,@AfterReturing,@AfterThrowing，@Around-->
+        <!--aop相关注解的识别@Aspect.@Pointcut,@Before,@After,@AfterReturing,@AfterThrowing，@Around-->
 <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-<!--配置bean-->
+        <!--配置bean-->
 <bean id="allAdvice" class="com.demo.aop.DemoAspect"></bean>
 <aop:config>
-    <!--配置bean切面-->
-    <aop:aspect ref="allAdvice">
-        <!--配置表达式-->
-        <aop:pointcut id="pointcut" expression="execution(* com.demo.service..*.test(..))"></aop:pointcut>
-        <!--配置通知-->
-        <aop:before method="before" pointcut-ref="pointcut"></aop:before>
-        <aop:after-returning method="afterReturning" pointcut-ref="pointcut" returning="ret"></aop:after-returning>
-        <aop:after-throwing method="afterThrowing" pointcut-ref="pointcut" throwing="e"></aop:after-throwing>
-        <aop:after method="after" pointcut-ref="pointcut"></aop:after>
-        <aop:around method="around" pointcut-ref="pointcut"></aop:around>
-    </aop:aspect>
+<!--配置bean切面-->
+<aop:aspect ref="allAdvice">
+    <!--配置表达式-->
+    <aop:pointcut id="pointcut" expression="execution(* com.demo.aop.service..*.test(..))"></aop:pointcut>
+    <!--配置通知-->
+    <aop:before method="before" pointcut-ref="pointcut"></aop:before>
+    <aop:after-returning method="afterReturning" pointcut-ref="pointcut" returning="ret"></aop:after-returning>
+    <aop:after-throwing method="afterThrowing" pointcut-ref="pointcut" throwing="e"></aop:after-throwing>
+    <aop:after method="after" pointcut-ref="pointcut"></aop:after>
+    <aop:around method="around" pointcut-ref="pointcut"></aop:around>
+</aop:aspect>
 </aop:config>
 ```
 
