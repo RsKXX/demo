@@ -107,7 +107,7 @@ public class DemoAspect {
 
 - @DeclareParents：定义引入通知，`defaultImpl`：接口的实现类，`value`：被引入的类，通过给接口提供实现类，允许对象动态的添加实现接口。
 
-  ![image-20210811014733704](image-20210811014733704.png)
+  ![image-20210811014733704](../../../../../image-20210811014733704.png)
 
 #### 2.2 xml
 

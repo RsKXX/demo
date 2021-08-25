@@ -1,0 +1,57 @@
+# 端口
+server:
+  port: 7031
+
+spring:
+#  aop:
+#    proxy-target-class: false
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: root
+#    password: root
+#    virtual-host: /demo
+
+  shardingsphere:
+    datasource:
+      names: sds0,default
+      sds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+        password: 123456
+        username: root
+        druid:
+          min-idle: 5
+          validation-query: select 1
+      default:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&rewriteBatchedStatements=true&useSSL=false&serverTimezone=Asia/Shanghai&rewriteBatchedStatements=true
+        password: 123456
+        username: root
+        druid:
+          min-idle: 5
+          validation-query: select 1
+    sharding:
+      tables:
+        student_info:
+          actualDataNodes: sds0.student_info_${0..31}
+          databaseStrategy:
+            none:
+          tableStrategy:
+            inline:
+              shardingColumn: class_id
+              algorithmExpression: student_info_${class_id % 32}
+          keyGenerator:
+            type: SNOWFLAKE
+            column: id
+      binding-tables: student_info
+      defaultDataSourceName: default
+      defaultTableStrategy:
+        none:
+      defaultKeyGenerator:
+        type: SNOWFLAKE
+        column: id
+    props:
+      sql.shwo: true

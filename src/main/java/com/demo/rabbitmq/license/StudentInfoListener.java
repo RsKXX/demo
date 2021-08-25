@@ -1,7 +1,7 @@
 package com.demo.rabbitmq.license;
 
 
-import com.demo.data.Student;
+import com.demo.proxy.data.Student;
 import com.demo.rabbitmq.constant.RabbitMqConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -3,11 +3,13 @@ server:
   port: 7031
 
 spring:
-  aop:
-    proxy-target-class: false
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: root
-    password: root
-    virtual-host: /demo
+  profiles:
+    active: dev
+#  aop:
+#    proxy-target-class: false
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: root
+#    password: root
+#    virtual-host: /demo

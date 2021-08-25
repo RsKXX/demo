@@ -1,4 +1,4 @@
-package com.demo.data;
+package com.demo.proxy.data;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

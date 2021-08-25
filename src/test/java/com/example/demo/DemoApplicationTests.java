@@ -1,19 +1,13 @@
 package com.example.demo;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.json.JSONArray;
 import com.demo.Application;
 
-import com.demo.data.Person;
-import com.demo.data.School;
-import com.demo.data.Student;
-import com.demo.utils.MapConvertUtil;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
 import java.lang.reflect.*;
-import java.math.BigDecimal;
 import java.util.*;
 
 
@@ -31,23 +25,23 @@ class DemoApplicationTests {
 
     @Test
     public void Proxy() {
-        Student student = new Student();
-        Class<?>[] interfaces = student.getClass().getInterfaces();
-        ClassLoader classLoader = student.getClass().getClassLoader();
-        Object o =  Proxy.newProxyInstance(classLoader, interfaces, (proxy, method, args) -> {
-            Object invoke = method.invoke(student,args);
-            return invoke;
-        });
-        Person proxy = (Person) o;
+//        Student student = new Student();
+//        Class<?>[] interfaces = student.getClass().getInterfaces();
+//        ClassLoader classLoader = student.getClass().getClassLoader();
+//        Object o =  Proxy.newProxyInstance(classLoader, interfaces, (proxy, method, args) -> {
+//            Object invoke = method.invoke(student,args);
+//            return invoke;
+//        });
+//        Person proxy = (Person) o;
+//
+//        School proxy1 = (School) o;
+////        System.out.println(o.toString());
+//        proxy.getUsername();
+//        proxy1.schoolName();
 
-        School proxy1 = (School) o;
-//        System.out.println(o.toString());
-        proxy.getUsername();
-        proxy1.schoolName();
-
-        Object o2 = org.springframework.cglib.proxy.Proxy.newProxyInstance(Person.class.getClassLoader(), new Class[]{Person.class,School.class}, (o1, method, objects) -> {
-            return null;
-        });
+//        Object o2 = org.springframework.cglib.proxy.Proxy.newProxyInstance(Person.class.getClassLoader(), new Class[]{Person.class,School.class}, (o1, method, objects) -> {
+//            return null;
+//        });
 //        o2.schoolName();
 //        o2.getUsername();
 
