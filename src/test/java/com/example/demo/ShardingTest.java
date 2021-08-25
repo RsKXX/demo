@@ -19,11 +19,11 @@ public class ShardingTest {
     @Test
     public void add() {
         StudentInfoDO student = new StudentInfoDO();
-        student.setAge(14).setClassId(1L).setClassName("4班").setName("wang");
+        student.setAge(14).setClassId(5L).setClassName("4班").setName("wang");
         StudentInfoDO student1 = new StudentInfoDO();
-        student1.setAge(14).setClassId(2L).setClassName("5班").setName("zhao");
+        student1.setAge(14).setClassId(6L).setClassName("5班").setName("zhao");
         StudentInfoDO student2 = new StudentInfoDO();
-        student2.setAge(14).setClassId(3L).setClassName("6班").setName("li");
+        student2.setAge(14).setClassId(7L).setClassName("6班").setName("li");
         studentService.addStudent(student);
         studentService.addStudent(student1);
         studentService.addStudent(student2);

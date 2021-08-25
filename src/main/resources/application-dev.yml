@@ -11,7 +11,12 @@ spring:
 #    username: root
 #    password: root
 #    virtual-host: /demo
-
+##################分库前数据源配置#######################
+#  datasource:
+#    url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=utf8&serverTimezone=UTC
+#    username: root
+#    password: 123456
+##################分库后数据源配置#######################
   shardingsphere:
     datasource:
       names: sds0,default

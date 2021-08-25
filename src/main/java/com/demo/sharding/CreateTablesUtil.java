@@ -18,7 +18,7 @@ public class CreateTablesUtil {
         //创建表
         for (int i = 0; i <= 31; i++) {
             String sql = "CREATE TABLE `student_info_" + i + "` (" +
-                "  `id` bigint unsigned NOT NULL ," +
+                "  `id` bigint unsigned NOT NULL AUTO_INCREMENT," +
                 "  `class_id` int NOT NULL COMMENT '班级id'," +
                 "  `name` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '名称'," +
                 "  `class_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '班级名称'," +
