@@ -1,4 +1,4 @@
-package com.demo.config;
+package com.demo.config.shardingconfig;
 
 import cn.hutool.core.util.StrUtil;
 import org.apache.ibatis.type.BaseTypeHandler;

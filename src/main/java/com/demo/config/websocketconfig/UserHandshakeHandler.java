@@ -1,4 +1,4 @@
-package com.demo.config;
+package com.demo.config.websocketconfig;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.demo.config;
+package com.demo.config.websocketconfig;
 
 
 import com.demo.redis.RedisService;

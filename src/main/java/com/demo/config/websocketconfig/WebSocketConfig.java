@@ -1,6 +1,7 @@
-package com.demo.config;
+package com.demo.config.websocketconfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.ChannelRegistration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -21,8 +22,12 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocket
 @Configuration
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
-    @Autowired
-    private WebSocketInterceptor webSocketInterceptor;
+//    @Autowired
+//    private WebSocketInterceptor webSocketInterceptor;
+    @Bean
+    public WebSocketInterceptor createBean(){
+        return new WebSocketInterceptor();
+    }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
@@ -33,7 +38,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureClientInboundChannel(ChannelRegistration registration) {
-        registration.interceptors(webSocketInterceptor);
+        registration.interceptors(createBean());
     }
 
     @Override

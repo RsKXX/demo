@@ -1,6 +1,6 @@
 # 端口
 server:
-  port: 7031
+  port: 8011
 
 spring:
   profiles:
@@ -15,6 +15,8 @@ spring:
     lettuce:
       pool:
         max-wait: 3s
+#  关闭cglib代理方式，因为springboot2.x 中默认设置为cglib方式进行代理，且启动类上注解@EnableAspectJAutoProxy默认为false
+#  表示无法使用jdk代理，则需要再配置文件中添加配置进行修改
 #  aop:
 #    proxy-target-class: false
 #  rabbitmq:

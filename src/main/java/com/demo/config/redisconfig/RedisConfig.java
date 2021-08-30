@@ -1,4 +1,4 @@
-package com.demo.config;
+package com.demo.config.redisconfig;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude;
