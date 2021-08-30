@@ -22,9 +22,16 @@ public class RedisListener implements MessageListener {
 
   private final SimpMessagingTemplate simpMessagingTemplate;
 
+  /**
+  *@author: RuanShaoKang
+  *@date: 2021/8/30
+  *@description: 监听redis send消息 同时广播获取的消息
+  *@param: [message, bytes]
+  *@return: void
+  */
   @Override
   public void onMessage(Message message, byte[] bytes) {
       StudentInfoDO studentInfoDO = JsonUtil.read(message.getBody(), StudentInfoDO.class);
-      simpMessagingTemplate.convertAndSend("/student/logout",studentInfoDO);
+      simpMessagingTemplate.convertAndSend("/topic/message",studentInfoDO);
   }
 }

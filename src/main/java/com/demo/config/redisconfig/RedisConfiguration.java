@@ -23,7 +23,7 @@ public class RedisConfiguration {
     public RedisMessageListenerContainer container(RedisConnectionFactory connectionFactory, RedisListener redisListener) {
         RedisMessageListenerContainer listenerContainer = new RedisMessageListenerContainer();
         listenerContainer.setConnectionFactory(connectionFactory);
-        listenerContainer.addMessageListener(redisListener, new PatternTopic("xxx"));
+        listenerContainer.addMessageListener(redisListener, new PatternTopic("student_topic"));
         return listenerContainer;
     }
 }
