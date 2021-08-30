@@ -32,8 +32,19 @@ public class DemoWebSocket {
     *@param: [sessionId, message]
     *@return: void
     */
-    public void sendMessage(String sessionId,String message){
+    public void sendMessageToUser(String sessionId,String message){
         simpMessagingTemplate.convertAndSendToUser(sessionId, "/topic/message", message+sessionId);
+    }
+
+    /**
+    *@author: RuanShaoKang
+    *@date: 2021/8/30
+    *@description: 广播消息
+    *@param: [message]
+    *@return: void
+    */
+    public void sendMessage(String message){
+        simpMessagingTemplate.convertAndSend("/topic/message", message);
     }
 
     /**
@@ -49,6 +60,7 @@ public class DemoWebSocket {
         String age = data.get("age");
         String sessionId = (String) message.getHeaders().get("simpSessionId");
         String temp = "name:"+name+",age:"+age;
-        sendMessage(sessionId,temp);
+        sendMessageToUser(sessionId,temp);
+        sendMessage(temp);
     }
 }
